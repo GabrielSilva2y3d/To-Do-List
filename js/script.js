@@ -22,12 +22,12 @@ inputField.addEventListener("keyup", (e) => {
 
     if(e.key === "Enter" && inputValue.length > 0){
     let tag = 
-        `<li id="list" class="list pending" onclick="handleStatus(this)">
+        `<li id="list" class="list pending ${verifyDarkMode() ? 'dark-mode' : ''}" onclick="handleStatus(this)">
             <input type= "checkbox"/>
             <span class="task">${inputValue}</span>
             <i class="uil uil-trash-alt" onclick="deleteTask(this)"></i>
          </li>`;
-
+ 
         todoLists.insertAdjacentHTML("beforeend", tag);
         inputField.value = "";
         allTasks();
@@ -50,6 +50,16 @@ function deleteTask(e){
     allTasks();
 }
 
+function verifyDarkMode(){
+    if (document.body.classList.contains('dark-mode')) {
+        localStorage.setItem('dark-mode', 'enabled');
+        return true;
+      } else {
+        localStorage.removeItem('dark-mode');
+        return false;
+      }
+}
+
 clearButton.addEventListener("click", () => {
     todoLists.innerHTML = "";
     allTasks();
@@ -60,7 +70,9 @@ clearButton.addEventListener("click", () => {
 const darkModeButton = document.getElementById('dark-mode-button'),
       darkContainer = document.getElementById('container'),
       pendingTasks = document.getElementById('pending-tasks'),
-      textArea = document.getElementById('text-area'); 
+      textArea = document.getElementById('text-area'),
+      list = () => Array.from(document.getElementsByClassName('list'));
+
 
 const darkMode = localStorage.getItem('dark-mode');
 
@@ -70,6 +82,10 @@ if (darkMode === 'enabled') {
   pendingTasks.classList.toggle('dark-mode');
   darkModeButton.classList.toggle('dark-mode');
   textArea.classList.toggle('dark-mode');
+  list().forEach(element => {
+    element.classList.toggle('dark-mode');
+  });
+  
 }
 
 darkModeButton.addEventListener('click', function() {
@@ -78,10 +94,9 @@ darkModeButton.addEventListener('click', function() {
     pendingTasks.classList.toggle('dark-mode');
     darkModeButton.classList.toggle('dark-mode');
     textArea.classList.toggle('dark-mode');  
+    list().forEach(element => {
+        element.classList.toggle('dark-mode');
+      });
 
-  if (document.body.classList.contains('dark-mode')) {
-    localStorage.setItem('dark-mode', 'enabled');
-  } else {
-    localStorage.removeItem('dark-mode');
-  }
+verifyDarkMode();
 });
