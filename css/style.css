@@ -14,22 +14,7 @@ textarea::-webkit-scrollbar{
     display: none;
 }
 
-.change-theme-button {
-    padding: 6px 12px;
-    outline: none;
-    border: none;
-    background: none;
-    color: black;
-    font-size: 30px;
-    border-radius: 4px;
-    cursor: pointer;
-    pointer-events: none;
-}
-.change-theme-button:hover{
-    opacity: 0.5;
-}
-
-.container {
+#container {
     position: relative;
     max-width: 480px;
     width: 100%;
@@ -40,17 +25,17 @@ textarea::-webkit-scrollbar{
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 
 }
-.container .input-field{
+#container .input-field{
     position: relative;
     height: 64px;
     width: 100%;
 }
-.container .todoLists {
+#container .todoLists {
     max-height: 380px;
     overflow-y: auto;
     padding-right: 10px;
 }
-.container .pending-tasks{
+#container .pending-tasks{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -91,7 +76,7 @@ textarea::-webkit-scrollbar{
     background-color: #f2f2f2;
     padding: 20px 15px;
     border-radius: 8px;
-    margin-top: 10px;
+    margin: 10px 0 0 5px;
     position: relative;
     cursor: pointer;
 }
@@ -126,7 +111,7 @@ textarea::-webkit-scrollbar{
     text-decoration: line-through;
 }
 
-.pending-tasks span{
+.pending-tasks {
     color: #333;
 }
 .pending-tasks .clear-button {
@@ -143,7 +128,38 @@ textarea::-webkit-scrollbar{
 .clear-button:hover{
     background-color: #0e4bf1;
 }
+.dark-mode-button {
+    padding: 6px 12px;
+    outline: none;
+    border: none;
+    background: none;
+    color: black;
+    font-size: 30px;
+    border-radius: 4px;
+    cursor: pointer;
+}
 
+/* dark mode style */
+body.dark-mode {
+    background: url(../img/dark-background.jpg);
+    background-size: cover;
+}
+#dark-mode-button.dark-mode {
+    color: #fff;
+}
+#container.dark-mode {
+    background-color: #333;
+}
+#pending-tasks.dark-mode {
+    color: #ccc;
+}
+#text-area.dark-mode{
+    background: #000;
+    color: white;
+}
+.todoLists .list.dark-mode{
+    background-color: #020202;
+}
 
 
 
